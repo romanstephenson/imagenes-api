@@ -1,0 +1,13 @@
+fastapi
+uvicorn[standard]
+python-dotenv
+pymongo
+motor>=3.0
+httpx
+pydantic-settings
+python-jose
+passlib[bcrypt]
+pillow
+pydicom
+tensorflow
+python-multipart

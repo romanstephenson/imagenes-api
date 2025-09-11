@@ -1,0 +1,315 @@
+{
+  "info": {
+    "name": "Imagenes API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "host",
+      "value": "http://127.0.0.1"
+    },
+    {
+      "key": "port",
+      "value": "8000"
+    }
+  ],
+  "item": [
+    {
+      "name": "Login",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{host}}:{{port}}/v1/login",
+          "host": [
+            "{{host}}"
+          ],
+          "port": "{{port}}",
+          "path": [
+            "v1",
+            "login"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\"username\": \"admin\", \"password\": \"password\"}"
+        }
+      }
+    },
+    {
+      "name": "Predict PNG",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{host}}:{{port}}/v1/predict",
+          "host": [
+            "{{host}}"
+          ],
+          "port": "{{port}}",
+          "path": [
+            "v1",
+            "predict"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": ""
+        },
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{token}}",
+              "type": "string"
+            }
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [
+              "if (!pm.variables.get(\"token\")) {",
+              "    pm.sendRequest({",
+              "        url: pm.variables.get(\"host\") + \":\" + pm.variables.get(\"port\") + \"/v1/login\",",
+              "        method: \"POST\",",
+              "        header: {",
+              "            \"Content-Type\": \"application/x-www-form-urlencoded\"",
+              "        },",
+              "        body: {",
+              "            mode: \"urlencoded\",",
+              "            urlencoded: [",
+              "                { key: \"username\", value: \"admin\" },",
+              "                { key: \"password\", value: \"password\" }",
+              "            ]",
+              "        }",
+              "    }, function (err, res) {",
+              "        if (!err) {",
+              "            var json = res.json();",
+              "            pm.variables.set(\"token\", json.access_token);",
+              "        }",
+              "    });",
+              "}"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Predict DICOM",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{host}}:{{port}}/v1/predict/dcm",
+          "host": [
+            "{{host}}"
+          ],
+          "port": "{{port}}",
+          "path": [
+            "v1",
+            "predict",
+            "dcm"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": ""
+        },
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{token}}",
+              "type": "string"
+            }
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [
+              "if (!pm.variables.get(\"token\")) {",
+              "    pm.sendRequest({",
+              "        url: pm.variables.get(\"host\") + \":\" + pm.variables.get(\"port\") + \"/v1/login\",",
+              "        method: \"POST\",",
+              "        header: {",
+              "            \"Content-Type\": \"application/x-www-form-urlencoded\"",
+              "        },",
+              "        body: {",
+              "            mode: \"urlencoded\",",
+              "            urlencoded: [",
+              "                { key: \"username\", value: \"admin\" },",
+              "                { key: \"password\", value: \"password\" }",
+              "            ]",
+              "        }",
+              "    }, function (err, res) {",
+              "        if (!err) {",
+              "            var json = res.json();",
+              "            pm.variables.set(\"token\", json.access_token);",
+              "        }",
+              "    });",
+              "}"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Predict RGB",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{host}}:{{port}}/v1/predict/rgb",
+          "host": [
+            "{{host}}"
+          ],
+          "port": "{{port}}",
+          "path": [
+            "v1",
+            "predict",
+            "rgb"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": ""
+        },
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{token}}",
+              "type": "string"
+            }
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [
+              "if (!pm.variables.get(\"token\")) {",
+              "    pm.sendRequest({",
+              "        url: pm.variables.get(\"host\") + \":\" + pm.variables.get(\"port\") + \"/v1/login\",",
+              "        method: \"POST\",",
+              "        header: {",
+              "            \"Content-Type\": \"application/x-www-form-urlencoded\"",
+              "        },",
+              "        body: {",
+              "            mode: \"urlencoded\",",
+              "            urlencoded: [",
+              "                { key: \"username\", value: \"admin\" },",
+              "                { key: \"password\", value: \"password\" }",
+              "            ]",
+              "        }",
+              "    }, function (err, res) {",
+              "        if (!err) {",
+              "            var json = res.json();",
+              "            pm.variables.set(\"token\", json.access_token);",
+              "        }",
+              "    });",
+              "}"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Model Metadata",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{host}}:{{port}}/v1/meta",
+          "host": [
+            "{{host}}"
+          ],
+          "port": "{{port}}",
+          "path": [
+            "v1",
+            "meta"
+          ]
+        },
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{token}}",
+              "type": "string"
+            }
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [
+              "if (!pm.variables.get(\"token\")) {",
+              "    pm.sendRequest({",
+              "        url: pm.variables.get(\"host\") + \":\" + pm.variables.get(\"port\") + \"/v1/login\",",
+              "        method: \"POST\",",
+              "        header: {",
+              "            \"Content-Type\": \"application/x-www-form-urlencoded\"",
+              "        },",
+              "        body: {",
+              "            mode: \"urlencoded\",",
+              "            urlencoded: [",
+              "                { key: \"username\", value: \"admin\" },",
+              "                { key: \"password\", value: \"password\" }",
+              "            ]",
+              "        }",
+              "    }, function (err, res) {",
+              "        if (!err) {",
+              "            var json = res.json();",
+              "            pm.variables.set(\"token\", json.access_token);",
+              "        }",
+              "    });",
+              "}"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    }
+  ]
+}

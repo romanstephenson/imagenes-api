@@ -1,0 +1,40 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pyc
+
+# Environment variables
+.env
+#.env.*
+.venv/
+env/
+venv/
+
+# Logs and artifacts
+*.log
+logs/
+
+# Ignore model directory and all model files
+model/
+*.keras
+*.h5
+*.pkl
+
+# OS generated
+.DS_Store
+Thumbs.db
+
+# Jupyter
+.ipynb_checkpoints/
+
+# VS Code
+.vscode/
+
+# Databases
+*.db
+*.sqlite3
+
+# Docker
+.dockerignore

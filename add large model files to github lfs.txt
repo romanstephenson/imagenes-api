@@ -1,0 +1,11 @@
+# Install Git LFS (if not already)
+# git lfs install
+
+# Track .keras files
+# git lfs track "*.keras"
+
+# Re-add your model
+# git add .gitattributes
+# git add model/v1/BreastCancerCNN_custom_model.keras
+# git commit -m "Track model file with Git LFS"
+# git push
